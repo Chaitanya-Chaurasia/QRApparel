@@ -1,5 +1,5 @@
 // /pages/api/update-bitly-link.ts
-import dbConnect from "@/app/lib/dbConnect";
+// import dbConnect from "@/app/lib/dbConnect";
 import User from "@/app/lib/model";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    await dbConnect();
+    // await dbConnect();
     const user = await User.findOneAndUpdate(
       { $or: [{ email: emailOrOrderId }, { orderId: emailOrOrderId }] },
       { link: bitlyLink },
@@ -26,7 +26,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    return NextResponse.json({ message: "Bitly link updated successfully" }, { status: 200 });
+    return NextResponse.json(
+      { message: "Bitly link updated successfully" },
+      { status: 200 }
+    );
   } catch (error) {
     console.error(error);
     return NextResponse.json(

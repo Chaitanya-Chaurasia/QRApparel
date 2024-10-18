@@ -1,5 +1,5 @@
 // /pages/api/generate-qrcode.ts
-import dbConnect from "@/app/lib/dbConnect";
+// import dbConnect from "@/app/lib/dbConnect";
 import User from "@/app/lib/model";
 import { NextRequest, NextResponse } from "next/server";
 import QRCode from "qrcode";
@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    await dbConnect();
+    // await dbConnect();
 
     // Find user by email or order ID
     const user = await User.findOne({

@@ -1,4 +1,4 @@
-import dbConnect from "@/app/lib/dbConnect";
+// import dbConnect from "@/app/lib/dbConnect";
 import User from "@/app/lib/model";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -7,12 +7,15 @@ export async function POST(req: NextRequest) {
   const { emailOrOrderId, newLink } = body;
 
   if (!emailOrOrderId || !newLink) {
-    return NextResponse.json({ error: "Email/Order ID and new link are required" }, { status: 400 });
+    return NextResponse.json(
+      { error: "Email/Order ID and new link are required" },
+      { status: 400 }
+    );
   }
 
   try {
-    await dbConnect();
-
+    // await dbConnect();
+    //
     const user = await User.findOne({
       $or: [{ email: emailOrOrderId }, { orderId: emailOrOrderId }],
     });
@@ -25,9 +28,15 @@ export async function POST(req: NextRequest) {
     user.link = newLink;
     await user.save();
 
-    return NextResponse.json({ message: "Link updated successfully" }, { status: 200 });
+    return NextResponse.json(
+      { message: "Link updated successfully" },
+      { status: 200 }
+    );
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }

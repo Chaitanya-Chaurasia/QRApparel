@@ -1,4 +1,4 @@
-import dbConnect from "../../lib/dbConnect";
+// import dbConnect from "../../lib/dbConnect";
 import User from "../../lib/model";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ message: "Email or Order ID is required" });
   }
 
-  await dbConnect();
+  // await dbConnect();
 
   // Check if the user exists by email or orderId
   const user =
