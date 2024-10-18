@@ -1,18 +1,34 @@
 "use client";
+
 import React, { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { QrCode, Loader2 } from "lucide-react";
+
 const RegisterPage = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [orderId, setOrderId] = useState("");
-  const [qrCode, setQrCode] = useState(""); // To store the scanned QR code
-  const [tempLink, setTempLink] = useState(""); // To store the temporary link
+  const [qrCode, setQrCode] = useState("");
+  const [tempLink, setTempLink] = useState("");
   const [message, setMessage] = useState("");
-  const [scanning, setScanning] = useState(false); // To handle scanning state
+  const [scanning, setScanning] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleScan = (data: any) => {
     if (data) {
-      setQrCode(data.text); // Store scanned QR code
-      setScanning(false); // Stop scanning after successful scan
+      setQrCode(data.text);
+      setScanning(false);
     }
   };
 
@@ -23,10 +39,11 @@ const RegisterPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
 
-    // Basic validation
     if (!fullName || !email || !orderId || !qrCode || !tempLink) {
       setMessage("Please fill in all fields.");
+      setIsLoading(false);
       return;
     }
 
@@ -40,8 +57,8 @@ const RegisterPage = () => {
           fullName,
           email,
           orderId,
-          qrCode, // Include QR code in the request
-          tempLink, // Include the temporary link in the request
+          qrCode,
+          tempLink,
         }),
       });
 
@@ -60,92 +77,79 @@ const RegisterPage = () => {
     } catch (error) {
       setMessage("Error occurred while registering.");
     }
-  };
 
-  const previewStyle = {
-    height: 240,
-    width: 320,
+    setIsLoading(false);
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-10 h-screen">
-      <h2 className="text-3xl font-bold">Register</h2>
-      {message && <p>{message}</p>}
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col justify-end items-end gap-2"
-      >
-        <div className="space-x-5">
-          <label>Full Name:</label>
-          <input
-            type="text"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            required
-            className="rounded-lg border"
-          />
-        </div>
-        <div className="space-x-5">
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="rounded-lg border"
-          />
-        </div>
-        <div className="space-x-5">
-          <label>Order ID:</label>
-          <input
-            type="text"
-            value={orderId}
-            onChange={(e) => setOrderId(e.target.value)}
-            required
-            className="rounded-lg border"
-          />
-        </div>
-        {!qrCode && (
-          <div className="space-x-5">
-            <button
-              type="button"
-              onClick={() => setScanning(true)} // Enable scanning mode
-              className="border p-2 rounded-lg"
+    <div className="flex items-center justify-center p-10 px-4">
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold tracking-tighter">
+            Register
+          </CardTitle>
+          <CardDescription>Create your account to get started</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-2">
+            <div className="space-y-2">
+              <Label htmlFor="fullName">Full Name</Label>
+              <Input
+                id="fullName"
+                type="text"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="orderId">Order ID</Label>
+              <Input
+                id="orderId"
+                type="text"
+                value={orderId}
+                onChange={(e) => setOrderId(e.target.value)}
+                required
+              />
+            </div>
+
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin bg-black" />
+                  Registering...
+                </>
+              ) : (
+                "Register"
+              )}
+            </Button>
+          </form>
+        </CardContent>
+        <CardFooter>
+          {message && (
+            <Alert
+              variant={
+                message.includes("successfully") ? "default" : "destructive"
+              }
             >
-              Scan QR Code
-            </button>
-          </div>
-        )}
-        {scanning && (
-          <div>
-            <button
-              type="button"
-              onClick={() => setScanning(false)} // Allow users to stop scanning
-              className="border p-2 mt-2 rounded-lg"
-            >
-              Cancel
-            </button>
-          </div>
-        )}
-        {qrCode && (
-          <div className="space-x-5">
-            <p>QR Code Scanned: {qrCode}</p>
-            <label>Temporary Link:</label>
-            <input
-              type="text"
-              value={tempLink}
-              onChange={(e) => setTempLink(e.target.value)}
-              placeholder="Enter a temporary link"
-              required
-              className="rounded-lg border"
-            />
-            <p className="text-xs">This link can be changed later.</p>
-          </div>
-        )}
-        <button type="submit" className="border p-3 rounded-lg">
-          Register
-        </button>
-      </form>
+              <AlertTitle>
+                {message.includes("successfully") ? "Success" : "Error"}
+              </AlertTitle>
+              <AlertDescription>{message}</AlertDescription>
+            </Alert>
+          )}
+        </CardFooter>
+      </Card>
     </div>
   );
 };
