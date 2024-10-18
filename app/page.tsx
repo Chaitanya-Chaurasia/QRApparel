@@ -32,40 +32,6 @@ const products = [
 export default function Page() {
   return (
     <div className="min-h-screen">
-      <div className="sticky top-0 z-10 bg-transparent bg-opacity-90 backdrop-blur-sm drop-shadow-[0_0px_79px_rgba(71,214,70,0.5)]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <nav className="bg-white rounded-full mx-auto max-w-2xl border">
-            <div className="px-4">
-              <div className="flex items-center justify-center h-16">
-                <div className="flex gap-4">
-                  <Link
-                    href="/shop"
-                    className="text-gray-600 hover:bg-gray-100 px-3 py-2 rounded-full text-xs font-medium"
-                  >
-                    <ShoppingBag className="inline-block mr-1" size={15} />
-                    Shop
-                  </Link>
-                  <Link
-                    href="/"
-                    className="text-gray-600 hover:bg-gray-100 px-3 py-2 rounded-full text-xs font-medium"
-                  >
-                    <Home className="inline-block mr-1" size={15} />
-                    Home
-                  </Link>
-                  <Link
-                    href="/orders"
-                    className="text-gray-600 hover:bg-gray-100 px-3 py-2 rounded-full text-xs font-medium"
-                  >
-                    <Package className="inline-block mr-1" size={15} />
-                    Your Orders
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </nav>
-        </div>
-      </div>
-
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <section className="text-center drop-shadow-[0_0px_79px_rgba(71,214,70,0.5)] p-40">
           <h1 className="text-5xl font-bold text-gray-900 mb-4 tracking-tighter">

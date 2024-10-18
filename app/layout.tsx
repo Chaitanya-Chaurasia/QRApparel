@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Inter, { Inter_Tight } from "next/font/google";
-import { Navbar } from "./page";
+import { Inter_Tight } from "next/font/google";
+import Link from "next/link";
+import { Home, Package, ShoppingBag } from "lucide-react";
 
 const inter = Inter_Tight({
   weight: ["400", "500", "600", "700", "900"],
@@ -20,10 +21,46 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-      <body className={`${inter.className} antialiased h-screen`}>
-        {children}
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
+      <body
+        className={`${inter.className} antialiased min-h-screen flex flex-col`}
+      >
+        <header className="sticky top-0 z-10 bg-transparent bg-opacity-90 backdrop-blur-sm drop-shadow-[0_0px_79px_rgba(0,0,0,0.5)]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <nav className="bg-white rounded-full mx-auto max-w-sm border">
+              <div className="px-4">
+                <div className="flex items-center justify-center h-16">
+                  <div className="flex ">
+                    <Link
+                      href="/shop"
+                      className="text-gray-600 hover:bg-gray-100 px-3 py-2 rounded-full text-xs font-medium flex items-center justify-center"
+                    >
+                      <ShoppingBag className="inline-block mr-1" size={15} />
+                      Shop
+                    </Link>
+                    <Link
+                      href="/"
+                      className="text-gray-600 hover:bg-gray-100 px-3 py-2 rounded-full text-xs font-medium flex items-center justify-center"
+                    >
+                      <Home className="inline-block mr-1" size={15} />
+                      Home
+                    </Link>
+                    <Link
+                      href="/login"
+                      className="text-gray-600 hover:bg-gray-100 px-3 py-2 rounded-full text-xs font-medium flex items-center justify-center"
+                    >
+                      <Package className="inline-block mr-1" size={15} />
+                      Your Orders
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </header>
+        <main className="flex-grow">{children}</main>
       </body>
     </html>
   );
