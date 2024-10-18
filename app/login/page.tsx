@@ -21,7 +21,9 @@ const LoginPage = () => {
           setMessage("Connected to database!");
         } else {
           setDbConnected(false);
-          setDbError("Database cannot be connected.");
+          setDbError(
+            "We're facing technical difficulties. Please refresh again!"
+          );
         }
       } catch (error) {
         setDbConnected(false);

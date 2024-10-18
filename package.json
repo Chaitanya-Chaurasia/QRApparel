@@ -11,12 +11,15 @@
   "dependencies": {
     "@next/font": "^14.2.13",
     "@types/qrcode": "^1.5.5",
+    "@types/react-qr-reader": "^2.1.7",
+    "lucide-react": "^0.453.0",
     "mongoose": "^8.6.3",
     "next": "14.2.13",
     "next-auth": "^4.24.7",
     "qrcode": "^1.5.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-qr-scanner": "^1.0.0-alpha.11"
   },
   "devDependencies": {
     "@types/node": "^20",
