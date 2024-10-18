@@ -34,7 +34,10 @@ export default function Page() {
     <div className="min-h-screen">
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <section className="text-center drop-shadow-[0_0px_79px_rgba(71,214,70,0.5)] p-40">
-          <h1 className="text-5xl font-bold text-gray-900 mb-4 tracking-tighter">
+          <h1
+            className="text-5xl font-bold mb-4 tracking-tighter 
+"
+          >
             quest for rebellion
           </h1>
           <p className="text-sm tracking-tighter text-gray-600 mb-8">
