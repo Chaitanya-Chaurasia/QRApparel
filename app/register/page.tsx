@@ -19,8 +19,6 @@ const RegisterPage = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [orderId, setOrderId] = useState("");
-  const [qrCode, setQrCode] = useState("");
-  const [tempLink, setTempLink] = useState("");
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -67,7 +65,9 @@ const RegisterPage = () => {
 
   //   setIsLoading(false);
   // };
-
+  setMessage("");
+  setIsLoading(false);
+  
   return (
     <div className="flex items-center justify-center p-10 px-4">
       <Card className="w-full max-w-md">

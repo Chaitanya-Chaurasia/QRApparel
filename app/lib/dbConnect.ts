@@ -1,11 +1,13 @@
 import mongoose, { Mongoose } from "mongoose";
 
 declare global {
-  // Correct typing for global mongoose
-  var mongoose: {
-    conn: Mongoose | null;
-    promise: Promise<Mongoose> | null;
-  };
+  // Use proper types for global mongoose
+  var mongoose:
+    | {
+        conn: Mongoose | null;
+        promise: Promise<Mongoose> | null;
+      }
+    | undefined;
 }
 
 const MONGODB_URI = process.env.NEXT_PUBLIC_MONGODB_URI!;
@@ -23,6 +25,9 @@ if (!cached) {
 }
 
 async function dbConnect() {
+  if (!cached) {
+    return;
+  }
   if (cached.conn) {
     return cached.conn;
   }

@@ -70,7 +70,7 @@ const Dashboard = () => {
         setError("Failed to update link.");
       }
     } catch (err) {
-      setError("An error occurred while updating the link.");
+      setError("An error occurred while updating the link." + err);
     }
   };
 
