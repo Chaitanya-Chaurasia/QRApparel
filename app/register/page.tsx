@@ -12,18 +12,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Loader2 } from "lucide-react";
+// import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 const RegisterPage = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [orderId, setOrderId] = useState("");
-  const [message, setMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-
-  setMessage("");
-  setIsLoading(false);
 
   return (
     <div className="flex items-center justify-center p-10 px-4">
@@ -67,20 +61,13 @@ const RegisterPage = () => {
               />
             </div>
 
-            <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin bg-black" />
-                  Registering...
-                </>
-              ) : (
-                "Register"
-              )}
+            <Button type="submit" className="w-full">
+              Register
             </Button>
           </form>
         </CardContent>
         <CardFooter>
-          {message && (
+          {/* {message && (
             <Alert
               variant={
                 message.includes("successfully") ? "default" : "destructive"
@@ -91,7 +78,7 @@ const RegisterPage = () => {
               </AlertTitle>
               <AlertDescription>{message}</AlertDescription>
             </Alert>
-          )}
+          )} */}
         </CardFooter>
       </Card>
     </div>
