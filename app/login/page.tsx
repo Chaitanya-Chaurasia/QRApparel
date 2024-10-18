@@ -24,59 +24,6 @@ const LoginPage = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  // const [error, setError] = useState("");
-  // const [dbConnected, setDbConnected] = useState(false);
-  // const [dbError, setDbError] = useState("");
-  // const [message, setMessage] = useState("");
-  // const router = useRouter();
-
-  // useEffect(() => {
-  //   const checkDbConnection = async () => {
-  //     try {
-  //       const res = await fetch("/api/check-db");
-  //       if (res.ok) {
-  //         setDbConnected(true);
-  //         setMessage("Connected to database!");
-  //       } else {
-  //         setDbConnected(false);
-  //         setDbError(
-  //           "We're facing technical difficulties. Please try again later!"
-  //         );
-  //       }
-  //     } catch (error) {
-  //       setDbConnected(false);
-  //       setDbError("Failed to check database connection." + error);
-  //     }
-  //   };
-
-  //   checkDbConnection();
-  // }, []);
-
-  // const handleLogin = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   setError("");
-
-  //   const loginData =
-  //     loginMethod === "orderId"
-  //       ? { orderId, password }
-  //       : { phoneNumber, password };
-
-  //   try {
-  //     const res = await fetch("/api/login", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify(loginData),
-  //     });
-
-  //     if (res.ok) {
-  //       router.push("/dashboard");
-  //     } else {
-  //       setError("Login failed. Please check your credentials.");
-  //     }
-  //   } catch (error) {
-  //     setError("An error occurred. Please try again." + error);
-  //   }
-  // };
 
   return (
     <div className="flex items-center justify-center p-10 px-4">
@@ -165,11 +112,7 @@ const LoginPage = () => {
                 </Button>
               </div>
             </div>
-            <Button
-              type="submit"
-              className="w-full bg-black"
-              // disabled={!dbConnected}
-            >
+            <Button type="submit" className="w-full bg-black">
               Login
             </Button>
           </form>
@@ -194,24 +137,6 @@ const LoginPage = () => {
           </Button>
         </CardFooter>
       </Card>
-      {/* {dbError && (
-        <Alert variant="destructive" className="mt-4">
-          <AlertTitle>Error</AlertTitle>
-          <AlertDescription>{dbError}</AlertDescription>
-        </Alert>
-      )}
-      {error && (
-        <Alert variant="destructive" className="mt-4">
-          <AlertTitle>Error</AlertTitle>
-          <AlertDescription>{error}</AlertDescription>
-        </Alert>
-      )}
-      {message && (
-        <Alert className="mt-4">
-          <AlertTitle>Success</AlertTitle>
-          <AlertDescription>{message}</AlertDescription>
-        </Alert>
-      )} */}
     </div>
   );
 };

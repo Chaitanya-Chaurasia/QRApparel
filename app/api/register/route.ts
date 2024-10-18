@@ -1,5 +1,4 @@
-// /pages/api/register.ts
-// import dbConnect from "@/app/lib/dbConnect";
+import dbConnect from "@/app/lib/dbConnect";
 import User from "@/app/lib/model";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -21,7 +20,7 @@ export async function POST(req: NextRequest) {
 
   try {
     // Connect to the database
-    // await dbConnect();
+    await dbConnect();
 
     // Check if user already exists
     const existingUser = await User.findOne({ $or: [{ email }, { orderId }] });

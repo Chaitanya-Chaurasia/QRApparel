@@ -22,52 +22,9 @@ const RegisterPage = () => {
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   setIsLoading(true);
-
-  //   if (!fullName || !email || !orderId || !qrCode || !tempLink) {
-  //     setMessage("Please fill in all fields.");
-  //     setIsLoading(false);
-  //     return;
-  //   }
-
-  //   try {
-  //     const response = await fetch("/api/register", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         fullName,
-  //         email,
-  //         orderId,
-  //         qrCode,
-  //         tempLink,
-  //       }),
-  //     });
-
-  //     const data = await response.json();
-
-  //     if (response.ok) {
-  //       setMessage("User registered successfully!");
-  //       setFullName("");
-  //       setEmail("");
-  //       setOrderId("");
-  //       setQrCode("");
-  //       setTempLink("");
-  //     } else {
-  //       setMessage(data.error || "Something went wrong.");
-  //     }
-  //   } catch (error) {
-  //     setMessage("Error occurred while registering.");
-  //   }
-
-  //   setIsLoading(false);
-  // };
   setMessage("");
   setIsLoading(false);
-  
+
   return (
     <div className="flex items-center justify-center p-10 px-4">
       <Card className="w-full max-w-md">
