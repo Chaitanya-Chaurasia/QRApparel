@@ -39,7 +39,7 @@ const Dashboard = () => {
             setError("Failed to fetch user info.");
           }
         } catch (err) {
-          setError("An error occurred while fetching user info.");
+          setError("An error occurred while fetching user info." + err);
         } finally {
           setLoading(false);
         }
@@ -110,7 +110,7 @@ const Dashboard = () => {
         setError("Failed to update Bitly link.");
       }
     } catch (err) {
-      setError("An error occurred while generating the Bitly link.");
+      setError("An error occurred while generating the Bitly link." + err);
     }
   };
 

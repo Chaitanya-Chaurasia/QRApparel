@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { QrCode, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 const RegisterPage = () => {
   const [fullName, setFullName] = useState("");
@@ -22,64 +22,51 @@ const RegisterPage = () => {
   const [qrCode, setQrCode] = useState("");
   const [tempLink, setTempLink] = useState("");
   const [message, setMessage] = useState("");
-  const [scanning, setScanning] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleScan = (data: any) => {
-    if (data) {
-      setQrCode(data.text);
-      setScanning(false);
-    }
-  };
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setIsLoading(true);
 
-  const handleError = (error: any) => {
-    console.error(error);
-    setMessage("Error occurred while scanning QR code.");
-  };
+  //   if (!fullName || !email || !orderId || !qrCode || !tempLink) {
+  //     setMessage("Please fill in all fields.");
+  //     setIsLoading(false);
+  //     return;
+  //   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
+  //   try {
+  //     const response = await fetch("/api/register", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         fullName,
+  //         email,
+  //         orderId,
+  //         qrCode,
+  //         tempLink,
+  //       }),
+  //     });
 
-    if (!fullName || !email || !orderId || !qrCode || !tempLink) {
-      setMessage("Please fill in all fields.");
-      setIsLoading(false);
-      return;
-    }
+  //     const data = await response.json();
 
-    try {
-      const response = await fetch("/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fullName,
-          email,
-          orderId,
-          qrCode,
-          tempLink,
-        }),
-      });
+  //     if (response.ok) {
+  //       setMessage("User registered successfully!");
+  //       setFullName("");
+  //       setEmail("");
+  //       setOrderId("");
+  //       setQrCode("");
+  //       setTempLink("");
+  //     } else {
+  //       setMessage(data.error || "Something went wrong.");
+  //     }
+  //   } catch (error) {
+  //     setMessage("Error occurred while registering.");
+  //   }
 
-      const data = await response.json();
-
-      if (response.ok) {
-        setMessage("User registered successfully!");
-        setFullName("");
-        setEmail("");
-        setOrderId("");
-        setQrCode("");
-        setTempLink("");
-      } else {
-        setMessage(data.error || "Something went wrong.");
-      }
-    } catch (error) {
-      setMessage("Error occurred while registering.");
-    }
-
-    setIsLoading(false);
-  };
+  //   setIsLoading(false);
+  // };
 
   return (
     <div className="flex items-center justify-center p-10 px-4">
@@ -91,7 +78,7 @@ const RegisterPage = () => {
           <CardDescription>Create your account to get started</CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-2">
+          <form className="space-y-2">
             <div className="space-y-2">
               <Label htmlFor="fullName">Full Name</Label>
               <Input

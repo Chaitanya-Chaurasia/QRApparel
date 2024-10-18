@@ -34,7 +34,7 @@ export default function RootLayout({
                 <div className="flex items-center justify-center h-16">
                   <div className="flex ">
                     <Link
-                      href="/shop"
+                      href="#"
                       className="text-gray-600 hover:bg-gray-100 px-3 py-2 rounded-full text-xs font-medium flex items-center justify-center"
                     >
                       <ShoppingBag className="inline-block mr-1" size={15} />

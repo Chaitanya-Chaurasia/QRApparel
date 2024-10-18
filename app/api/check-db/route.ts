@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "@/app/lib/dbConnect";
 import { NextResponse } from "next/server";
 import User from "@/app/lib/model";
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET() {
   try {
     await dbConnect(); // Try to establish a database connection
     const users = await User.find();

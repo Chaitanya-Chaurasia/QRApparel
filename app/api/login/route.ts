@@ -2,7 +2,7 @@ import dbConnect from "../../lib/dbConnect";
 import User from "../../lib/model";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   if (req.method !== "POST") {
     return NextResponse.json({ message: "Method not allowed" });
   }

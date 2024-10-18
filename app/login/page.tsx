@@ -16,7 +16,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 const LoginPage = () => {
   const [loginMethod, setLoginMethod] = useState<"orderId" | "phoneNumber">(
@@ -26,59 +25,59 @@ const LoginPage = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
-  const [dbConnected, setDbConnected] = useState(false);
-  const [dbError, setDbError] = useState("");
-  const [message, setMessage] = useState("");
-  const router = useRouter();
+  // const [error, setError] = useState("");
+  // const [dbConnected, setDbConnected] = useState(false);
+  // const [dbError, setDbError] = useState("");
+  // const [message, setMessage] = useState("");
+  // const router = useRouter();
 
-  useEffect(() => {
-    const checkDbConnection = async () => {
-      try {
-        const res = await fetch("/api/check-db");
-        if (res.ok) {
-          setDbConnected(true);
-          setMessage("Connected to database!");
-        } else {
-          setDbConnected(false);
-          setDbError(
-            "We're facing technical difficulties. Please try again later!"
-          );
-        }
-      } catch (error) {
-        setDbConnected(false);
-        setDbError("Failed to check database connection.");
-      }
-    };
+  // useEffect(() => {
+  //   const checkDbConnection = async () => {
+  //     try {
+  //       const res = await fetch("/api/check-db");
+  //       if (res.ok) {
+  //         setDbConnected(true);
+  //         setMessage("Connected to database!");
+  //       } else {
+  //         setDbConnected(false);
+  //         setDbError(
+  //           "We're facing technical difficulties. Please try again later!"
+  //         );
+  //       }
+  //     } catch (error) {
+  //       setDbConnected(false);
+  //       setDbError("Failed to check database connection." + error);
+  //     }
+  //   };
 
-    checkDbConnection();
-  }, []);
+  //   checkDbConnection();
+  // }, []);
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
+  // const handleLogin = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setError("");
 
-    const loginData =
-      loginMethod === "orderId"
-        ? { orderId, password }
-        : { phoneNumber, password };
+  //   const loginData =
+  //     loginMethod === "orderId"
+  //       ? { orderId, password }
+  //       : { phoneNumber, password };
 
-    try {
-      const res = await fetch("/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(loginData),
-      });
+  //   try {
+  //     const res = await fetch("/api/login", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(loginData),
+  //     });
 
-      if (res.ok) {
-        router.push("/dashboard");
-      } else {
-        setError("Login failed. Please check your credentials.");
-      }
-    } catch (error) {
-      setError("An error occurred. Please try again.");
-    }
-  };
+  //     if (res.ok) {
+  //       router.push("/dashboard");
+  //     } else {
+  //       setError("Login failed. Please check your credentials.");
+  //     }
+  //   } catch (error) {
+  //     setError("An error occurred. Please try again." + error);
+  //   }
+  // };
 
   return (
     <div className="flex items-center justify-center p-10 px-4">
@@ -92,7 +91,7 @@ const LoginPage = () => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleLogin} className="space-y-6">
+          <form className="space-y-6">
             <RadioGroup
               defaultValue="orderId"
               onValueChange={(value) =>
@@ -170,7 +169,7 @@ const LoginPage = () => {
             <Button
               type="submit"
               className="w-full bg-black"
-              disabled={!dbConnected}
+              // disabled={!dbConnected}
             >
               Login
             </Button>

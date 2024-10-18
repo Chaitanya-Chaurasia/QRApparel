@@ -4,7 +4,6 @@ export interface IUser extends Document {
   name: string;
   email: string;
   orderId: string;
-  qrCode: any;
   link: string;
 }
 
