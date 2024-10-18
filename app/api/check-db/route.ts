@@ -1,6 +1,6 @@
-import dbConnect from "@/app/lib/dbConnect";
+import dbConnect from "@/lib/dbConnect";
 import { NextResponse } from "next/server";
-import User from "@/app/lib/model";
+import User from "@/lib/model";
 export async function GET() {
   try {
     await dbConnect(); // Try to establish a database connection
